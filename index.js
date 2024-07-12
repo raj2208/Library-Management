@@ -4,24 +4,22 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const sequelize = require("./utll/database");
 
-// Routes
 const borrowedBooksRoute = require("./Routes/BorrowedBooks");
 const returnedBooksRoute = require("./Routes/ReturnedBooks");
 
-// Models
 const BorrowedBook = require("./Model/BorrowedBook");
 const ReturnedBook = require("./Model/ReturnedBook");
 
 app.use(bodyParser.json());
 
-// Borrowed Books routes
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use("/BorrowedBooks", borrowedBooksRoute);
 
-// Returned Books routes
 app.use("/ReturnedBooks", returnedBooksRoute);
 
 app.use("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "View", "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 sequelize
@@ -35,3 +33,16 @@ sequelize
   .catch((err) => {
     console.error("Error syncing database:", err);
   });
+
+// Some books!--->
+
+// The 7 Habits of Highly Effective People
+// Atomic Habits
+// Daring Greatly
+// Man's Search for Meaning
+// The Power of Now
+// You Are a Badass
+// Invisible Women
+// How to Win Friends and Influence People
+// I Thought It Was Just Me (But It Isn't)
+// The Body Keeps the Score

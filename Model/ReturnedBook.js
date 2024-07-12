@@ -1,4 +1,3 @@
-// Model/ReturnedBook.js
 const Sequelize = require("sequelize");
 const sequelize = require("../utll/database");
 
